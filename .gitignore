@@ -29,7 +29,7 @@ local.properties
 .buildpath
 
 #################
-## Eclipse
+## Java
 #################
 
 *.class
@@ -37,3 +37,4 @@ local.properties
 *.jar
 *.war
 *.ear
+target/
