@@ -25,13 +25,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class LoginLocationLogger extends JavaPlugin {
+public class LoginLocationLogger extends JavaPlugin implements Listener {
 	 
 	private File loginLogFile;
 	
@@ -40,21 +42,25 @@ public class LoginLocationLogger extends JavaPlugin {
 	 * @param event
 	 */
 	@EventHandler
-    public void playerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event){
 		//On player join send them the message from config.yml
 		Player player = event.getPlayer();
-    	Location location = player.getLocation();    	
+    	Location location = player.getLocation();   
     	logToFile(player, location);
 	}
 	
 	public void onEnable() {
+		
+		PluginManager pm = Bukkit.getServer().getPluginManager();
+        pm.registerEvents(this, this);
 		
 		File dataFolder = getDataFolder();
         if(!dataFolder.exists())
     	{
             dataFolder.mkdir();
         }
-        this.getLogger().log(Level.INFO, "It's Working, I think. Echo");
+        this.getLogger().log(Level.INFO, "Login-Location-Logger active! Does just about nothing! Enjoy :)");
+        this.getLogger().log(Level.INFO, "Login-Location-Logger creates a new  log when the server starts.");
 		newLoggerFile("LocationLog_", 1);
 	}
 	
