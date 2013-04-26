@@ -1,0 +1,10 @@
+name: LoginLocationLogger
+main: com.CastawayDevelopment.LoginLocationLogger.LoginLocationLogger
+version: ${build.version}
+
+author: Echobob
+
+description: This plugin logs player's login location. 
+website: www.castawaydev.com
+
+load: PREWORLD
